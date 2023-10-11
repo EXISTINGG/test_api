@@ -1,11 +1,11 @@
 import Koa from 'koa';
 import Router from 'koa-router';
 import cors from 'koa2-cors'
-
+import 'dotenv/config'
 
 const app = new Koa();
 const router = new Router();
-
+const SERVER_ADDRESS = process.env.SERVER_ADDRESS
 app.use(cors())
 
 //#region 
@@ -72,4 +72,4 @@ router.get('/', (ctx) => ctx.body = responseData)
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-app.listen(3000, () => console.log('Server is running on http://localhost:3000'))
+app.listen(3000, () => console.log(`Server is running on ${SERVER_ADDRESS}`))
